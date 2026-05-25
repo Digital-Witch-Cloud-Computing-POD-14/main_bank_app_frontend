@@ -3,6 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_BASE_URL from "../config";
 
 const ViewBankAllTransactions = () => {
   let navigate = useNavigate();
@@ -12,8 +13,7 @@ const ViewBankAllTransactions = () => {
 
   const retrieveAllTransactions = async () => {
     const response = await axios.get(
-      "https://bankapi.cloudwitches.online/api/bank/transaction/all/customer/fetch?bankId=" +
-        bank.bank.id,
+      `${API_BASE_URL}/api/bank/transaction/all/customer/fetch?bankId=${bank.bank.id}`,
       {
         headers: {
           Authorization: "Bearer " + bank_jwtToken, // Replace with your actual JWT token

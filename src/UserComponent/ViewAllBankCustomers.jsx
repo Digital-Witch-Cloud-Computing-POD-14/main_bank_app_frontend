@@ -3,6 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_BASE_URL from "../config";
 
 const ViewAllBankCustomers = () => {
   let navigate = useNavigate();
@@ -21,9 +22,7 @@ const ViewAllBankCustomers = () => {
 
   const retrieveBankAllCustomerByName = async () => {
     const response = await axios.get(
-      "https://bankapi.cloudwitches.online/api/user/all/customer/search?" +
-        "customerName=" +
-        customerName,
+      `${API_BASE_URL}/api/user/all/customer/search?customerName=${customerName}`,
       {
         headers: {
           Authorization: "Bearer " + admin_jwtToken, // Replace with your actual JWT token
@@ -36,7 +35,7 @@ const ViewAllBankCustomers = () => {
 
   const retrieveAllCustomers = async () => {
     const response = await axios.get(
-      "https://bankapi.cloudwitches.online/api/user/fetch/role?role=CUSTOMER",
+      `${API_BASE_URL}/api/user/fetch/role?role=CUSTOMER`,
       {
         headers: {
           Authorization: "Bearer " + admin_jwtToken, // Replace with your actual JWT token
@@ -81,7 +80,7 @@ const ViewAllBankCustomers = () => {
     updateUserStatusRequest.userId = userId;
     updateUserStatusRequest.status = "Active";
 
-    fetch("https://bankapi.cloudwitches.online/api/user/update/status", {
+    fetch(`${API_BASE_URL}/api/user/update/status`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -148,7 +147,7 @@ const ViewAllBankCustomers = () => {
     updateUserStatusRequest.userId = userId;
     updateUserStatusRequest.status = "Deactivated";
 
-    fetch("https://bankapi.cloudwitches.online/api/user/update/status", {
+    fetch(`${API_BASE_URL}/api/user/update/status`, {
       method: "POST",
       headers: {
         Accept: "application/json",

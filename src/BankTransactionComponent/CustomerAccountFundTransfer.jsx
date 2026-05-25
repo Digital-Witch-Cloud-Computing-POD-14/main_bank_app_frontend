@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
+import API_BASE_URL from "../config";
 
 const CustomerAccountFundTransfer = () => {
   const customer = JSON.parse(sessionStorage.getItem("active-customer"));
@@ -24,7 +25,7 @@ const CustomerAccountFundTransfer = () => {
   };
 
   const saveAccount = (e) => {
-    fetch("https://bankapi.cloudwitches.online/api/bank/transaction/account/transfer", {
+    fetch(`${API_BASE_URL}/api/bank/transaction/account/transfer`, {
       method: "POST",
       headers: {
         Accept: "application/json",

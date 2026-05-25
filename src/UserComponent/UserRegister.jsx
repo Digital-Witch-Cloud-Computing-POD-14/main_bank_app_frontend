@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import API_BASE_URL from "../config";
 
 const UserRegister = () => {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ const UserRegister = () => {
       jwtToken = sessionStorage.getItem("admin-jwtToken"); // Use admin's JWT token for bank register
     }
 
-    fetch("https://bankapi.cloudwitches.online/api/user/register", {
+    fetch(`${API_BASE_URL}/api/user/register`, {
       method: "POST",
       headers: {
         Accept: "application/json",

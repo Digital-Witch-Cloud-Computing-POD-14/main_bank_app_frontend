@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
+import API_BASE_URL from "../config";
 
 const AddBankAccount = () => {
   const location = useLocation();
@@ -27,7 +28,7 @@ const AddBankAccount = () => {
   };
 
   const saveAccount = (e) => {
-    fetch("https://bankapi.cloudwitches.online/api/bank/account/add", {
+    fetch(`${API_BASE_URL}/api/bank/account/add`, {
       method: "POST",
       headers: {
         Accept: "application/json",

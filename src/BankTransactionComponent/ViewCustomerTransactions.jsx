@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import API_BASE_URL from "../config";
 
 const ViewCustomerTransactions = () => {
   const location = useLocation();
@@ -29,8 +30,7 @@ const ViewCustomerTransactions = () => {
 
   const retrieveAllTransactions = async () => {
     const response = await axios.get(
-      "https://bankapi.cloudwitches.online/api/bank/transaction/history?userId=" +
-        customer.id,
+      `${API_BASE_URL}/api/bank/transaction/history?userId=${customer.id}`,
       {
         headers: {
           Authorization: "Bearer " + jwtToken, // Replace with your actual JWT token

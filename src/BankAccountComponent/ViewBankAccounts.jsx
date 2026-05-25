@@ -3,6 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_BASE_URL from "../config";
 
 const ViewBankAccounts = () => {
   let navigate = useNavigate();
@@ -23,8 +24,7 @@ const ViewBankAccounts = () => {
 
   const retrieveAllAccounts = async () => {
     const response = await axios.get(
-      "https://bankapi.cloudwitches.online/api/bank/account/fetch/bankwise?bankId=" +
-        bank.bank.id,
+      `${API_BASE_URL}/api/bank/account/fetch/bankwise?bankId=${bank.bank.id}`,
       {
         headers: {
           Authorization: "Bearer " + bank_jwtToken, // Replace with your actual JWT token
@@ -37,10 +37,7 @@ const ViewBankAccounts = () => {
 
   const retrieveAllAccountsByBankAccount = async () => {
     const response = await axios.get(
-      "https://bankapi.cloudwitches.online/api/bank/account/search?bankId=" +
-        bank.bank.id +
-        "&accountNumber=" +
-        accountNumber,
+      `${API_BASE_URL}/api/bank/account/search?bankId=${bank.bank.id}&accountNumber=${accountNumber}`,
       {
         headers: {
           Authorization: "Bearer " + bank_jwtToken, // Replace with your actual JWT token
@@ -89,7 +86,7 @@ const ViewBankAccounts = () => {
     updateBankAccountStatusRequest.accountId = accountId;
     updateBankAccountStatusRequest.status = "Open";
 
-    fetch("https://bankapi.cloudwitches.online/api/bank/account/update/status", {
+    fetch(`${API_BASE_URL}/api/bank/account/update/status`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -157,7 +154,7 @@ const ViewBankAccounts = () => {
     updateBankAccountStatusRequest.accountId = accountId;
     updateBankAccountStatusRequest.status = "Lock";
 
-    fetch("https://bankapi.cloudwitches.online/api/bank/account/update/status", {
+    fetch(`${API_BASE_URL}/api/bank/account/update/status`, {
       method: "POST",
       headers: {
         Accept: "application/json",
